@@ -576,7 +576,7 @@ const QUIZ = {
   officiel:{ q:"Ton numéro de TVA, c'est…", opts:["Un numéro totalement différent du numéro d'entreprise","BE suivi de ton numéro d'entreprise","Le numéro de ton compte en banque"], ok:1,
     exp:"Le numéro de TVA reprend exactement le numéro d'entreprise, précédé de BE. Un seul numéro pour identifier l'entreprise partout, c'est le principe de la Banque-Carrefour." }
 };
-const ROAD = [["Fonde ton entreprise","Aujourd'hui"],["Équipe ton entreprise","Investir sans tout dépenser"],["Compare les offres","Fournisseurs et conditions"],["Première commande client","Marge et facture de vente"],["Fin d'exercice","Résultat et bilan"]];
+const ROAD = [["Fonde ton entreprise","Aujourd'hui"],["Équipe ton entreprise","Achats, fournisseurs et factures"],["Première commande client","Marge et facture de vente"],["Fin d'exercice","Résultat et bilan"]];
 
 // ======================================================================
 //  ÉTAT
@@ -878,7 +878,7 @@ function vitrine(uid){
     <text x="218" y="${85 + fs*0.35}" font-size="${fs.toFixed(1)}" text-anchor="middle" fill="${texteSurMarque()}" style="font-family:${fontFam}; font-weight:${S.style === "street" ? 400 : 700}; ${S.style === "elegant" ? "font-style:italic;" : ""}">${esc(nom)}</text>
     <rect x="44" y="124" width="206" height="124" fill="${cadre}"/><rect x="50" y="130" width="194" height="112" fill="url(#amb-${uid})"/>
     <rect x="50" y="130" width="194" height="60" fill="url(#spot-${uid})"/>
-    ${etagere(176, [items[0], items[1], items[2]])}${etagere(222, [items[3] || items[0], items[0], items[1]])}
+    ${etagere(176, [items[0], items[1], items[2]])}${etagere(222, (typeof EQUIPEMENT_VITRINE === "function" && EQUIPEMENT_VITRINE().length) ? EQUIPEMENT_VITRINE().concat([items[3] || items[0], items[0]]).slice(0, 3) : [items[3] || items[0], items[0], items[1]])}
     <rect x="50" y="130" width="194" height="112" fill="url(#gl-${uid})"/><path d="M60 132 L100 132 L72 242 L52 242Z" fill="#fff" opacity=".12"/>
     ${auvent}
     <rect x="40" y="246" width="214" height="7" rx="1" fill="#d9d4c7"/><rect x="40" y="253" width="214" height="3" fill="rgba(0,0,0,.3)"/>
